@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import CardList from "./CardList";
+import CardList from "../components/CardList";
 import { robots } from "../robots";
-import SearchBox from "./SearchBox";
+import SearchBox from "../components/SearchBox";
+import Heading from "../components/Heading";
+import Scroll from "../components/Scroll";
 import axios from "axios";
-import "../../src/App.css";
-import "../../src/index.css";
+import "../containers/App.css";
+import "../containers/index.css";
 
 class App extends Component {
   state = {
@@ -31,15 +33,18 @@ class App extends Component {
   };
 
   render() {
-    const filteredRobots = this.state.robots.filter(robot =>
-      robot.name.toLowerCase().includes(this.state.searchfield)
+    const { robots, searchfield } = this.state;
+    const filteredRobots = robots.filter(robot =>
+      robot.name.toLowerCase().includes(searchfield)
     );
 
     return (
       <React.Fragment>
-        <h1 className="tc f2">Robofriends</h1>
+        <Heading />
         <SearchBox searchChange={this.onSearchChange} />
-        <CardList robots={filteredRobots} />
+        <Scroll>
+          <CardList robots={filteredRobots} />
+        </Scroll>
       </React.Fragment>
     );
   }
