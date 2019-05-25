@@ -16,7 +16,7 @@ export const requestRobots = () => dispatch => {
     type: REQUEST_ROBOTS_PENDING
   });
   axios
-    .get("http://jsonplaceholder.typicode.com/users/")
+    .get("https://jsonplaceholder.typicode.com/users/")
     .then(({ data }) =>
       dispatch({
         type: REQUEST_ROBOTS_SUCCESS,
